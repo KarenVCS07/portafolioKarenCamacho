@@ -1,0 +1,33 @@
+
+/* 
+   comentario
+Agregando estilos a los TAGS
+*/
+
+footer p{
+    background-color: pink;
+    color:white;
+}
+
+h1,h2{
+    text-align: center;
+}
+
+h1{
+    background-color: black;
+    color: white;
+}
+
+h2{
+    background-color: green;
+    color: yellow;
+}
+
+.aviso{
+    background-color: pink;
+    color:white;
+}
+
+#btonAlgo{
+    
+}
