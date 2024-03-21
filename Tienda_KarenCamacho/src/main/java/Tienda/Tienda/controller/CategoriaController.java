@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Controller
 @Slf4j
 @RequestMapping("/categoria")
@@ -24,7 +23,7 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @GetMapping("/listado")
-    public String inicio(Model model) {
+    public String listado(Model model) {
         var categorias = categoriaService.getCategorias(false);
         model.addAttribute("categorias", categorias);
         model.addAttribute("totalCategorias", categorias.size());
@@ -44,7 +43,7 @@ public class CategoriaController {
             @RequestParam("imagenFile") MultipartFile imagenFile) {        
         if (!imagenFile.isEmpty()) {
             categoriaService.save(categoria);
-            categoria.setRutaImagen(
+            categoria.setRuta_imagen(
                     firebaseStorageService.cargaImagen(
                             imagenFile, 
                             "categoria", 
@@ -62,10 +61,8 @@ public class CategoriaController {
 
     @GetMapping("/modificar/{idCategoria}")
     public String categoriaModificar(categoria categoria, Model model) {
-        categoria = categoriaService.getCategorias(categoria);
+        categoria = categoriaService.getCategoria(categoria);
         model.addAttribute("categoria", categoria);
         return "/categoria/modifica";
     }
-    
-    
-}//fin de la clase
+}

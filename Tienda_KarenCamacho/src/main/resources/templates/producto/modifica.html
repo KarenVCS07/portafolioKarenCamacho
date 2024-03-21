@@ -3,16 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://thymeleaf.org">
     <head th:replace="~{layout/plantilla::head}">
-        <title>TODO supply a title</title>
+        <title>TechShop</title>
     </head>
     <body>
          <header th:replace="~{layout/plantilla::header}"> </header>
          
-         <section th:replace="~{categoria/fragmentos :: botonesAgregar}"/>
-         <section th:replace="~{categoria/fragmentos :: agregarCategoria}"/>
-         <section th:replace="~{categoria/fragmentos :: listadoCategorias}"/>
-        
-
+         <section th:replace="~{producto/fragmentos :: editarProducto}"/>
         
         
         <footer th:replace="~{layout/plantilla::footer}"> </footer>

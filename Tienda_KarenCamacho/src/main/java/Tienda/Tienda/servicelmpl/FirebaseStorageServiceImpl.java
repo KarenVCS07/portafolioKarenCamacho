@@ -10,7 +10,6 @@ import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.Storage.SignUrlOption;
 import com.google.cloud.storage.StorageOptions;
-import com.tienda.service.FirebaseStorageService;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,16 +20,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class FirebaseStorageServiceImpl implements FirebaseStorageService{
-    
-   @Override
-   
-   public String cargaImagen(MultipartFile archivoLocalCliente, String carpeta, Long id);{
-    try{
-        //el nombre original del archivo localcliente
-        String extension = archivoLocalCliente.getOriginslFilename();
-        
-        // Se genera el nombre según el código del articulo. 
+public class FirebaseStorageServiceImpl implements FirebaseStorageService {
+    @Override
+    public String cargaImagen(MultipartFile archivoLocalCliente, String carpeta, Long id) {
+        try {
+            // El nombre original del archivo local del cliene
+            String extension = archivoLocalCliente.getOriginalFilename();
+
+            // Se genera el nombre según el código del articulo. 
             String fileName = "img" + sacaNumero(id) + extension;
 
             // Se convierte/sube el archivo a un archivo temporal
@@ -46,10 +43,9 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService{
         } catch (IOException e) {
             e.printStackTrace();
             return null;
-        
-    }//fin dle try
-}//fin del publix
-   
+        }
+    }
+
     private String uploadFile(File file, String carpeta, String fileName) throws IOException {
         //Se define el lugar y acceso al archivo .jasper
         ClassPathResource json = new ClassPathResource(rutaJsonFile + File.separator + archivoJsonFile);
@@ -62,8 +58,8 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService{
         String url = storage.signUrl(blobInfo, 3650, TimeUnit.DAYS, SignUrlOption.signWith((ServiceAccountSigner) credentials)).toString();
         return url;
     }
-    
-     //Método utilitario que convierte el archivo desde el equipo local del usuario a un archivo temporal en el servidor
+
+    //Método utilitario que convierte el archivo desde el equipo local del usuario a un archivo temporal en el servidor
     private File convertToFile(MultipartFile archivoLocalCliente) throws IOException {
         File tempFile = File.createTempFile("img", null);
         try (FileOutputStream fos = new FileOutputStream(tempFile)) {
@@ -77,5 +73,4 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService{
     private String sacaNumero(long id) {
         return String.format("%019d", id);
     }
-    
 }

@@ -9,24 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
+public class CategoriaServiceImpl implements CategoriaService {
 
-    @Service
-public class CategoriaServicelmpl implements CategoriaService  {
-    
     @Autowired
     private CategoriaDao categoriaDao;
 
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<categoria> getCategorias(boolean activos) {
-        var lista=categoriaDao.findAll();
+        var lista = categoriaDao.findAll();
         if (activos) {
-           lista.removeIf(e -> !e.isActivo());
+            lista.removeIf(e -> !e.isActivo());
         }
         return lista;
     }
-    
-    
+
     @Override
     @Transactional(readOnly = true)
     public categoria getCategoria(categoria categoria) {
@@ -44,4 +42,4 @@ public class CategoriaServicelmpl implements CategoriaService  {
     public void delete(categoria categoria) {
         categoriaDao.delete(categoria);
     }
-}//fin de la clase
+}

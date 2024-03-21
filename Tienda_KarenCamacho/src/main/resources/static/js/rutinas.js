@@ -1,4 +1,3 @@
-
 /* La siguiente función se utiliza para visualizar la imagen seleccionada en la
  * página html donde se desea "cargar" utilizando un llamado "ajax"*/
 function readURL(input) {
@@ -20,3 +19,4 @@ function addCard(formulario) {
     var url = '/carrito/agregar';
     url = url + '/' + valor;
     $("#resultsBlock").load(url);
+}

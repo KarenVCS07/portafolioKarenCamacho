@@ -18,6 +18,6 @@ public interface FirebaseStorageService {
     final String rutaJsonFile = "firebase";
     
     //nombre del archivo Json
-    final String archivoJsonFile = "techshop-28e3b-firebase-adminsdk-ftnwx-0442f8d411.json";
+    final String archivoJsonFile = "techshop-28e3b-firebase-adminsdk-2ya4y-1881de7d16.json";
     
 }

@@ -2,6 +2,7 @@
 package Tienda.Tienda.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 
 
@@ -17,14 +18,19 @@ public class categoria  implements Serializable{
     @Column(name="id_categoria")
     private Long idCategoria;
     private String descripcion;
-    private String rutaImagen;
+    private String ruta_imagen;
     private boolean activo;
+    
+    
+    @OneToMany
+    @JoinColumn(name = "id_categoria", updatable = false)
+    List<Producto> productos;
     
     public categoria() {
     }
 
-    public categoria(String categoria, boolean activo) {
-        this.descripcion = categoria;
+    public categoria(String descripcion, boolean activo) {
+        this.descripcion = descripcion;
         this.activo = activo;
     }
     
